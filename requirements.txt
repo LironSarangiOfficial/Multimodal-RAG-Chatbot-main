@@ -1,0 +1,19 @@
+# Core
+streamlit
+python-dotenv
+chromadb
+
+# PDF parsing
+docling
+pymupdf
+pdfplumber
+
+# Embeddings + re-ranking (HuggingFace)
+sentence-transformers
+torch
+
+# LLM (new unified Google GenAI SDK; the old google-generativeai is deprecated)
+google-genai
+
+# Used while downloading models for offline use
+huggingface-hub
