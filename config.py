@@ -57,10 +57,10 @@ def _resolve(folder, repo):
  
 EMBEDDING_MODEL = _resolve(EMBEDDING_DIR, EMBEDDING_REPO)
 RERANKER_MODEL  = _resolve(RERANKER_DIR, RERANKER_REPO)
- 
+
 
 # Gemini (new google-genai SDK). gemini-2.5-flash is a good, cheap default.
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
 # The SDK reads GOOGLE_API_KEY or GEMINI_API_KEY automatically; we also expose it.
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
 

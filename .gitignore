@@ -18,8 +18,8 @@ models/
 
 # --- Generated data ---
 chroma_db/
-data/processed/
-data/raw/*.pdf
+# data/processed/
+# data/raw/*.pdf
 !data/raw/.gitkeep
 
 # --- OS / editor noise ---

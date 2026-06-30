@@ -152,9 +152,13 @@ def parse_with_fallback(pdf_path):
             page_no = i + 1
 
             # text: pdfplumber first, PyMuPDF as a safety net
-            text = page.extract_text() or ""
-            if not text.strip() and i < fitz_doc.page_count:
-                text = fitz_doc[i].get_text() or ""
+            # text = page.extract_text() or ""
+            # if not text.strip() and i < fitz_doc.page_count:
+            #     text = fitz_doc[i].get_text() or ""
+
+            # For testing with only PyMuPDF
+            text = fitz_doc[i].get_text() or ""
+            
             if text.strip():
                 items.append((text, page_no, "", "text"))
 
@@ -243,13 +247,18 @@ def main():
         source_file = pdf_path.name
         print(f"\nParsing {source_file} ...")
 
-        try:
-            items = parse_with_docling(pdf_path)
-            print(f"  Docling OK ({len(items)} items)")
-        except Exception as e:
-            print(f"  Docling unavailable ({e}); using pdfplumber/PyMuPDF fallback")
-            items = parse_with_fallback(pdf_path)
-            print(f"  Fallback OK ({len(items)} items)")
+        # For Using PyMuPDF as fallback only
+        # try:
+        #     items = parse_with_docling(pdf_path)
+        #     print(f"  Docling OK ({len(items)} items)")
+        # except Exception as e:
+        #     print(f"  Docling unavailable ({e}); using pdfplumber/PyMuPDF fallback")
+        #     items = parse_with_fallback(pdf_path)
+        #     print(f"  Fallback OK ({len(items)} items)")
+
+        # For using PyMuPDF + pdfplumber as main
+        items = parse_with_fallback(pdf_path)
+        print(f"  PyMuPDF/pdfplumber OK ({len(items)} items)")
 
         chunks = dedupe(items_to_chunks(items, source_file))
         print(f"  -> {len(chunks)} chunks")
